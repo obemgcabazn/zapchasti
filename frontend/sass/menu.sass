@@ -1,0 +1,76 @@
+.top-header-menu-wrap
+  padding: 5px
+  background: $blue
+
+  #top-header-menu //nav
+    padding: 0
+    flex-wrap: wrap
+    flex-direction: row
+    a
+      text-decooration: none
+
+  #menu-header //ul
+    margin: 0
+    padding: 0
+    flex-wrap: wrap
+    flex-direction: row
+
+    .nav-item
+      padding: 0
+
+      &:first-child
+        .nav-link
+          padding-left: 0
+
+      & + .nav-item
+        margin-left: 10px
+
+        .nav-link
+          padding: 10px 20px
+
+      .nav-link
+        padding: 10px
+
+      &.current-menu-item
+        .nav-link
+          color: $orange
+
+#aside-menu-container
+  flex-direction: column
+  padding: 0
+  a
+    text-decoration: none
+
+  .menu-title
+    width: 100%
+    color: $blue
+    padding: 0px
+    font-weight: bold
+    font-size: 24px
+    margin-bottom: 5px
+
+
+  #menu-aside
+    flex-direction: column
+
+    .nav-item
+      margin-left: 20px
+
+      &.current-menu-item, &.current-product_cat-ancestor, &.current-product-ancestor
+        .nav-link
+          font-weight: bold
+          color: black
+
+      .nav-link
+        padding: 5px 0
+        color: $light-grey
+
+        &:hover
+          color: black
+
+
+  .navbar-toggler
+    border: none
+
+    .navbar-toggler-icon
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")

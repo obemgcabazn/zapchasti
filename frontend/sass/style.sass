@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700,900&subset=cyrillic')
+
+$black: #292b2c
+$blue: #03407C
+$orange: #FFA543
+$light-grey: #B7B7B7
+$background-grey: #F2F2F2
+
+*
+  font-family: Roboto, 'Open Sans', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  text-rendering: geometricPrecision
+
+a
+  color: $blue
+  text-decoration: underline
+
+.blue-link-no-underline-orange-hover
+  color: $blue
+  text-decoration: none
+  &:hover
+    color: $orange
+
+h1, h2, h3, h4, h5, h6
+  margin-bottom: 16px
+  color: #6F6F6F
+
+  .wrapper &
+      color: $black
+
+
+h1
+  font-size: 32px
+  font-weight: 700
+  margin-bottom: 1.5rem
+
+h2
+  font-size: 28px
+  font-weight: 500
+  margin-bottom: 1.5rem
+
+p
+  line-height: 1.7
+
+main
+  padding-bottom: 50px
+  background: $background-grey
+
+.wrapper
+  background: white
+  max-width: 1180px
+  margin: auto
+  margin-bottom: 25px
+  padding: 20px 20px 40px
+  -webkit-box-shadow:  2px 2px 5px lighten($light-grey, 10)
+  -moz-box-shadow:  2px 2px 5px lighten($light-grey, 10)
+  box-shadow:  2px 2px 5px lighten($light-grey, 10)
+
+  & > .container
+    background: white
+
+// Сертификаты
+a[data-fancybox]
+  img
+    max-width: 100%
+
+#to-top
+  display: block
+  height: 40px
+  width: 40px
+  position: fixed
+  z-index: 5
+  bottom: 50px
+  left: 40px
+  cursor: pointer
+  background: $blue url('/img/to-top-arrow.svg') no-repeat
+  background-size: 50% 50%
+  background-position: 10px 10px
+  -webkit-border-radius: 50%
+  -moz-border-radius: 50%
+  border-radius: 50%
+  padding: 10px
+  -webkit-box-shadow:  2px 2px 5px lighten($light-grey, 10)
+  -moz-box-shadow:  2px 2px 5px lighten($light-grey, 10)
+  box-shadow:  2px 2px 5px lighten($light-grey, 10)
+  -webkit-transition: all 300ms
+  -moz-transition: all 300ms
+  -ms-transition: all 300ms
+  -o-transition: all 300ms
+  transition: all 300ms
+  &:hover
+    background-color: darken($blue, 5)
+    -webkit-box-shadow:  1px 1px 7px 3px lighten($light-grey, 10)
+    -moz-box-shadow:  1px 1px 7px 3px lighten($light-grey, 10)
+    box-shadow:  1px 1px 7px 3px lighten($light-grey, 10)
+
