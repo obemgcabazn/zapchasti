@@ -9,7 +9,7 @@ var gulp          = require('gulp'),
 gulp.task('watch', function(){
   livereload.listen();
   gulp.watch('frontend/sass/*.sass', gulp.series( 'sass'));
-  gulp.watch('public/wp-content/themes/zapchasti/*.php').on('change', livereload.changed);
+  gulp.watch('public/wp-content/themes/zapchasti/**/*.php').on('change', livereload.changed);
   gulp.watch('public/wp-content/themes/zapchasti/css/*.css').on('change', livereload.changed);
   gulp.watch('public/wp-content/themes/zapchasti/js/*.js').on('change', livereload.changed);
 });

@@ -26,34 +26,33 @@ remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 // если собираетесь выводить вставки из других сайтов на своем, то закомментируйте след. строку.
 remove_action( 'wp_head',                'wp_oembed_add_host_js'                 );
 
-/* Сброс фильтра для html в описании категории */
-remove_filter('pre_term_description', 'wp_filter_kses');
-remove_filter('pre_term_description', 'wp_kses_data');
+remove_filter('the_content', 'wptexturize'); /* убираем авотдобавление параграфиов */
+remove_action( 'wp_head', 'wp_resource_hints', 2); /* удаляем dns-prefetch */
 
-/* удаляем shortlink и canonical */
-remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0 );
-remove_action ('wp_head', 'rel_canonical');
+// Удаляем автоподстановку размера картинок
+// function remove_thumbnail_dimensions( $html ) {
+//   $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+//   return $html;
+// }
+// add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 );
+// add_filter( 'image_send_to_editor', 'remove_thumbnail_dimensions', 10 );
+
+// убираем emoji
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 // Убираем мусор из шапки
 remove_action('wp_head', 'wp_generator');
 remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'rsd_link');
 
-// убираем emoji
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'wp_print_styles', 'print_emoji_styles' );
+/* удаляем shortlink и canonical */
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0 );
+remove_action ('wp_head', 'rel_canonical');
 
-remove_filter('the_content', 'wptexturize'); /* убираем авотдобавление параграфиов */
-remove_action( 'wp_head', 'wp_resource_hints', 2); /* удаляем dns-prefetch */
-
-// Удаляем автоподстановку размера картинок
-add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 );
-add_filter( 'image_send_to_editor', 'remove_thumbnail_dimensions', 10 );
-
-function remove_thumbnail_dimensions( $html ) {
-  $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-  return $html;
-}
+/* Сброс фильтра для html в описании категории */
+remove_filter('pre_term_description', 'wp_filter_kses');
+remove_filter('pre_term_description', 'wp_kses_data');
 
 // Удаляем RSS ленту
 function fb_disable_feed() {

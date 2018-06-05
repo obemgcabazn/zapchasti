@@ -477,3 +477,35 @@ input.input-text.qty.text {
       color: #03407C; }
       .woocommerce-pagination ul.page-numbers li .page-numbers.current {
         font-weight: bold; }
+
+.woocommerce-cart-form .product-thumbnail {
+  padding-right: 20px; }
+
+.woocommerce-cart-form .product-name {
+  padding-right: 20px; }
+  .woocommerce-cart-form .product-name a {
+    font-size: 18px;
+    font-weight: bold; }
+
+.woocommerce-cart-form .product-quantity {
+  padding-right: 20px; }
+  .woocommerce-cart-form .product-quantity .qty {
+    width: 70px; }
+
+.woocommerce-cart-form .product-subtotal {
+  padding-right: 20px; }
+
+.woocommerce-cart-form .product-remove a {
+  text-decoration: none; }
+  .woocommerce-cart-form .product-remove a:hover {
+    text-decoration: uncart-total; }
+
+.wc-proceed-to-checkout .checkout-button {
+  display: inline-block;
+  background: #03407C;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 12px 60px;
+  border-radius: 5px; }

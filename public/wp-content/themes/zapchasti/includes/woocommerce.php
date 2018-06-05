@@ -14,7 +14,11 @@ function gallery_theme_setup() {
 	add_theme_support( 'woocommerce' );
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-slider' );
+	// add_theme_support( 'wc-product-gallery-lightbox' );
 }
+
+// Удаляем стили WC
+add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 /* переносим артикул */
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
