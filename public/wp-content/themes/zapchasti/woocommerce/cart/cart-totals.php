@@ -93,12 +93,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 </div>
-
+</div> <!-- car_border_wrapper -->
 
 <?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
 
-<div class="wc-proceed-to-checkout">
-	<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
+<div class="row">
+	<div class="col-12 d-flex justify-content-end">
+		<div class="wc-proceed-to-checkout ">
+			<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
+		</div>
+	</div>
 </div>
-
 <?php do_action( 'woocommerce_after_cart_totals' ); ?>

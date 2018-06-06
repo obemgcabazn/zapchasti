@@ -11,7 +11,11 @@
 // Включить галерею твоаров
 add_action( 'after_setup_theme', 'gallery_theme_setup' );
 function gallery_theme_setup() {
-	add_theme_support( 'woocommerce' );
+	add_theme_support( 'woocommerce'/*, array(
+  'thumbnail_image_width' => 200,
+  'gallery_thumbnail_image_width' => 100,
+  'single_image_width' => 500,
+	)*/ );
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-slider' );
 	// add_theme_support( 'wc-product-gallery-lightbox' );
