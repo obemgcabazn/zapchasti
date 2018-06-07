@@ -22,7 +22,7 @@ function gallery_theme_setup() {
 }
 
 // Удаляем стили WC
-add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+//add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 /* переносим артикул */
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
@@ -74,13 +74,24 @@ function custom_override_checkout_fields( $fields ) {
 	unset($fields['billing']['billing_company']);
 	unset($fields['billing']['billing_last_name']);
 	unset($fields['billing']['billing_country']);
-	unset($fields['billing']['billing_address_1']);
+	unset($fields['billing']['billing_city']);
+	// unset($fields['billing']['billing_address_1']);
 	unset($fields['billing']['billing_address_2']);
 	unset($fields['billing']['billing_state']);
 	unset($fields['billing']['billing_postcode']);
-	$fields['billing']['billing_first_name']['label'] = 'ФИО';
+
+	$fields['billing']['billing_first_name']['label'] = 'Имя и фамилия';
 	$fields['billing']['billing_first_name']['placeholder'] = 'Введите ФИО';
-	return $fields;
+	$fields['billing']['billing_first_name']['class'][1] = 'row col-lg-6';
+	$fields['billing']['billing_first_name']['label_class'][0] = 'col-12';
+	$fields['billing']['billing_first_name']['input_class'][0] = 'col-12';
+
+	$fields['billing']['billing_address_1']['class'][2] = 'row col-lg-6';
+	$fields['billing']['billing_address_1']['label_class'][0] = 'col-12';
+	$fields['billing']['billing_address_1']['input_class'][0] = 'col-12';
+	$fields['billing']['billing_address_1']['label'] = 'Адрес доставки';
+	//return $fields;
+	print_r($fields);
 }
 
 // Обертка для количества и кнопки "В корзину" в карточке товара

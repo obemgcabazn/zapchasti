@@ -39,9 +39,9 @@
           <div class="col-12 col-sm-6 col-md-4 offset-lg-1 col-lg-4">
             <div class=" text-center text-sm-left">
               <a href="/contact/" title="Контакты" class="address">МО, г. Долгопрудный, Лихачевский пр-д, д.8</a>
-              <br class="hidden-md-up">
+              <br class="d-block d-md-none">
               <p class="time">Пн-Чт: <span class="working-time">с 9:00 до 18:00</span>,
-	              <br class="hidden-md-up">
+	              <br class="d-block d-md-none">
 	              Пт: <span class="working-time">с 9:00 до 17:00</span></p>
             </div>
           </div>
@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   </header>
 
   <div class="breadcrumbs-wrapper">
@@ -77,7 +77,7 @@
 	  <div class="wrapper">
 		  <div class="container">
 			  <div class="row  justify-content-md-center">
-				  <?php if (!is_front_page() && !is_cart() ){ ?>
+				  <?php if (!is_front_page() && !is_cart() && !is_checkout() ){ ?>
 				  <div class="col-12 col-md-4 col-lg-3">
 					  <?=print_aside_menu()?>
 				  </div>
