@@ -23,25 +23,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** @global WC_Checkout $checkout */
 
 ?>
-<div class="woocommerce-billing-fields">
+<!-- <div class="woocommerce-billing-fields"> -->
 
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
-	<div class="woocommerce-billing-fields__field-wrapper row">
-		<?php
-			$fields = $checkout->get_checkout_fields( 'billing' );
+	<!-- <div class="woocommerce-billing-fields__field-wrapper"> -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row">
+			<?php
+				$fields = $checkout->get_checkout_fields( 'billing' );
 
-			foreach ( $fields as $key => $field ) {
-				if ( isset( $field['country_field'], $fields[ $field['country_field'] ] ) ) {
-					$field['country'] = $checkout->get_value( $field['country_field'] );
+				foreach ( $fields as $key => $field ) {
+					if ( isset( $field['country_field'], $fields[ $field['country_field'] ] ) ) {
+						$field['country'] = $checkout->get_value( $field['country_field'] );
+					}
+					woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
 				}
-				woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
-			}
-		?>
-	</div>
+			?>
+				</div>
+			</div>
+		</div>
+	<!-- </div> -->
 
 	<?php do_action( 'woocommerce_after_checkout_billing_form', $checkout ); ?>
-</div>
+<!-- </div> -->
 
 <?php if ( ! is_user_logged_in() && $checkout->is_registration_enabled() ) : ?>
 	<div class="woocommerce-account-fields">
