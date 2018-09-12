@@ -12,27 +12,33 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates
- * @version 3.4.0  
+ * @version 3.4.0
  */
 
-defined( 'ABSPATH' ) || exit; 
-?>
+defined( 'ABSPATH' ) || exit; ?>
 
-<h1 class="text-center">Корзина</h1>
+<h1 class="text-center my-3">Корзина</h1>
 
 <?php
+
 wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
-
-<div class="cart_border_wrapper">
-	
-
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
 	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
+		<thead>
+			<tr>
+				<th class="product-thumbnail">&nbsp;</th>
+				<th class="product-name"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
+				<th class="product-price"><?php esc_html_e( 'Price', 'woocommerce' ); ?></th>
+				<th class="product-quantity"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
+				<th class="product-subtotal"><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
+				<th class="product-remove">&nbsp;</th>
+			</tr>
+		</thead>
 		<tbody>
 			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
@@ -48,10 +54,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 						<td class="product-thumbnail">
 						<?php
-						add_image_size( 'cart_image_size', 60, 60, false );
-						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image( 'cart_image_size' ), $cart_item, $cart_item_key );
-						// $cart_item_key = 'fccb60fb512d13df5083790d64c4d5dd';
-						// print_r($cart_item_key);
+
+
+						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image( 'my_cart_image_size' ), $cart_item, $cart_item_key );
 
 						if ( ! $product_permalink ) {
 							echo wp_kses_post( $thumbnail );
@@ -81,11 +86,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 						?>
 						</td>
 
-						<!-- td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+						<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
 							<?php
-								// echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
-						</td -->
+						</td>
 
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
 						<?php
@@ -155,17 +160,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<?php do_action( 'woocommerce_after_cart_table' ); ?>
 </form>
 
-
-
-<?php
-	/**
-	 * Cart collaterals hook.
-	 *
-	 * @hooked woocommerce_cross_sell_display
-	 * @hooked woocommerce_cart_totals - 10
-	 */
-	remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
-	do_action( 'woocommerce_cart_collaterals' );
-?>
+<div class="cart-collaterals">
+	<?php
+		/**
+		 * Cart collaterals hook.
+		 *
+		 * @hooked woocommerce_cross_sell_display
+		 * @hooked woocommerce_cart_totals - 10
+		 */
+		do_action( 'woocommerce_cart_collaterals' );
+	?>
+</div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>

@@ -1,4 +1,60 @@
 <?php
+/**
+ * zapchasti-kotla functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package zapchasti
+ */
+if ( ! function_exists( 'zapchasti_setup' ) ){
+  function zapchasti_setup() {
+    define('WOOCOMMERCE_USE_CSS', false);
+    add_theme_support( 'woocommerce' );
+    add_theme_support( 'html5', array( 'search-form' ) );
+    add_theme_support( 'wc-product-gallery-zoom' );
+    add_theme_support( 'wc-product-gallery-slider' );
+  }
+}
+add_action( 'after_setup_theme', 'zapchasti_setup' );
+
+
+// Добавляем Стили
+if ( !is_admin() ) {
+  add_action( 'wp_print_styles', 'zapchasti_style_method' );
+}
+function zapchasti_style_method () {
+  wp_enqueue_style( 'bootstrap', "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", '', '', '' );
+  // wp_enqueue_style( 'slick', get_template_directory_uri() . "/css/slick.css", '', '', '' );
+  // wp_enqueue_style( 'slick-theme', get_template_directory_uri() . "/css/slick-theme.css", '', '', '' );
+  // wp_enqueue_style( 'style', get_template_directory_uri() . "/css/style.css", '', '', '' );
+  wp_enqueue_style( 'concat', get_template_directory_uri() . "/css/concat.css", '', '', '' );
+}
+
+// Удаляем стили WC
+//add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+
+// Добавляем Скрипты
+add_action( 'wp_enqueue_scripts', 'zapchasti_scripts_method' );
+function zapchasti_scripts_method(){
+  wp_enqueue_script( 'tether', "https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js", '', '', 'true');
+  wp_enqueue_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', '', '', 'true' );
+  wp_enqueue_script( 'fancybox',  get_template_directory_uri() . '/js/jquery.fancybox.min.js', '', '', 'true' );
+  // wp_enqueue_script( 'slick', get_template_directory_uri() . '/js/slick.min.js', '', '', 'true' );
+  // wp_enqueue_script( 'script', get_template_directory_uri() . '/js/script.js', '', '', 'true' );
+}
+
+add_action( 'wp_print_styles', 'front_page_style_method', 99 );
+function front_page_style_method () {
+  if(is_front_page()) {
+    wp_enqueue_style( 'homepage-style', get_template_directory_uri() . "/css/homepage.css", '', '', '' );
+  }
+}
+
+register_nav_menus( array( 
+  'header_menu' => __( 'Верхнее меню' ), 
+  'aside_menu' => __( 'Боковое меню' ), 
+  ));
+
 // Отключаем сам REST API
 add_filter('rest_enabled', '__return_false');
 
@@ -67,14 +123,3 @@ add_action('do_feed_rss2_comments', 'fb_disable_feed', 1);
 add_action('do_feed_atom_comments', 'fb_disable_feed', 1);
 remove_action( 'wp_head', 'feed_links_extra', 3 );
 remove_action( 'wp_head', 'feed_links', 2 );
-
-// Woocommerce
-
-/* убираем разброс цен */
-remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-
-//Убираем "Найдено результатов" из категории
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
-
-//Убрать кнопку добавить в корзину в Категории
-remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);

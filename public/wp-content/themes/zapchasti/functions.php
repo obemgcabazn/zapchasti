@@ -1,7 +1,8 @@
 <?php
-require 'includes/styles_scripts.php';
-require 'includes/disable.php';
+require 'includes/init.php';
 require 'includes/woocommerce.php';
+
+if ( !is_admin() )  show_admin_bar(false);
 
 if (function_exists('register_sidebar')) register_sidebar(array(
 		'id' => 'search',
@@ -13,8 +14,7 @@ if (function_exists('register_sidebar')) register_sidebar(array(
 ));
 
 // Вывод верхнего меню
-function print_top_menu()
-{
+function print_top_menu() {
 	$header_menu = wp_nav_menu( array(
 			'theme_location'  => 'header_menu',
 			'container'       => 'nav',
@@ -33,8 +33,7 @@ function print_top_menu()
 }
 
 // Вывод бокового меню
-function print_aside_menu()
-{
+function print_aside_menu() {
 	$aside_menu = wp_nav_menu( array(
 			'theme_location'  => 'aside_menu',
 			'container'       => 'nav',
@@ -53,20 +52,14 @@ function print_aside_menu()
 }
 
 //Выводит Заголовок страницы Title
-function get_title()
-{
+function get_title() {
 	$queried_object = get_queried_object();
 
-	if($title = get_field('wc_title', $queried_object->taxonomy . '_' . $queried_object->term_id))
-	{
+	if($title = get_field('wc_title', $queried_object->taxonomy . '_' . $queried_object->term_id)) {
 		return $title;
-	}
-	elseif ($title = get_field('wc_title'))
-	{
+	} elseif ($title = get_field('wc_title')) {
 		return $title;
-	}
-	else
-	{
+	} else {
 		echo ltrim(wp_title("",false));
 	}
 }
@@ -76,35 +69,28 @@ function get_description() {
 	
 	$queried_object = get_queried_object();
 	
-	if($desc = get_field('wc_description', $queried_object->taxonomy . '_' . $queried_object->taxonomy))
-	{
+	if($desc = get_field('wc_description', $queried_object->taxonomy . '_' . $queried_object->taxonomy)) {
 		return $desc;
-	}
-	else
-	{
+	} else {
 		the_field('wc_description');
 	}
 }
 
 //Выводит Keywords
-function get_keywords()
-{
+function get_keywords() {
 	$queried_object = get_queried_object();
 	
-	if($keywords = get_field('wc_keywords', $queried_object->taxonomy . '_' . $queried_object->term_id))
-	{
+	if($keywords = get_field('wc_keywords', $queried_object->taxonomy . '_' . $queried_object->term_id)) {
 		return $keywords;
-	}
-	else
-	{
+	} else {
 		the_field('wc_keywords');
 	}
 }
 
-add_action( 'wp_print_styles', 'homepage_style_method', 99 );
-function homepage_style_method () {
-	if(is_front_page())
-	{
-		wp_enqueue_style( 'homepage-style', get_template_directory_uri() . "/css/homepage.css", '', '', '' );
-	}
-}
+add_image_size( 'my_cart_image_size', 60, 60, false );
+// function my_cart_image_size( $product_image, $cart_item, $cart_item_key ){
+// 	$product_image ='cart_image_size';
+// 	return $product_image;
+
+// }
+// add_filter('woocommerce_cart_item_thumbnail', 'my_cart_image_size', 10, 3);

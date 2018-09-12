@@ -1,28 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alexandr
- * Date: 06.07.2017
- * Time: 9:45
- */
-
 /* ХУКИ WOOCOMMERCE */
 
-// Включить галерею твоаров
-add_action( 'after_setup_theme', 'gallery_theme_setup' );
-function gallery_theme_setup() {
-	add_theme_support( 'woocommerce'/*, array(
-  'thumbnail_image_width' => 200,
-  'gallery_thumbnail_image_width' => 100,
-  'single_image_width' => 500,
-	)*/ );
-	add_theme_support( 'wc-product-gallery-zoom' );
-	add_theme_support( 'wc-product-gallery-slider' );
-	// add_theme_support( 'wc-product-gallery-lightbox' );
-}
+/* убираем разброс цен */
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
 
-// Удаляем стили WC
-//add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+//Убираем "Найдено результатов" из категории
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+
+//Убрать кнопку добавить в корзину в Категории
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 
 /* переносим артикул */
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );

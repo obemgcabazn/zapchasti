@@ -54,9 +54,11 @@
 
 .woocommerce table.shop_table tr 
   border-left: none
+  td
+    border-top: none
 
   & + tr td
-    border-top: 1px solid rgba(0,0,0,.1)
+    border-bottom: 1px solid rgba(0,0,0,.1)
   
   .product-thumbnail
     padding-top: 0
@@ -92,3 +94,7 @@
 
 .cart-subtotal
   display: none
+
+.woocommerce .shop_table .order-total
+  th, td
+    border: none
