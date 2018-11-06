@@ -32,7 +32,7 @@ do_action( 'woocommerce_before_main_content' );
 
 	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
-		<h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
+		<h1 class="woocommerce-products-header__title page-title"><?php if(is_product_tag()){echo "Запчасти для котла";} ?> <?php woocommerce_page_title(); ?></h1>
 
 	<?php endif; ?>
 
@@ -64,7 +64,7 @@ if ( woocommerce_product_loop() ) {
 			 */
 			do_action( 'woocommerce_shop_loop' ); ?>
 		
-			<div class="col-12 col-md-4 col-xl-3">
+			<div class="col-12 col-md-4 col-xl-3 product-item-wrapper">
 		
 				<?php wc_get_template_part( 'content', 'product' ); ?>
 		

@@ -13,15 +13,12 @@ a
   &:hover
     color: $orange
 
-
-
 h1, h2, h3, h4, h5, h6
   margin-bottom: 16px
   color: #6F6F6F
 
   .wrapper &
       color: $black
-
 
 h1
   font-size: 32px
@@ -87,3 +84,33 @@ a[data-fancybox]
     -webkit-box-shadow:  1px 1px 7px 3px lighten($light-grey, 10)
     -moz-box-shadow:  1px 1px 7px 3px lighten($light-grey, 10)
     box-shadow:  1px 1px 7px 3px lighten($light-grey, 10)
+
+//FRONT-PAGE
+.b__vendor-link-wrapper
+  line-height: 75px
+  text-align: center
+
+  height: 100px
+  margin-bottom: 30px
+  
+  border: 1px solid $ultra-light-grey
+  border-radius: 3px
+  box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.3)
+  
+  .ie-wrapper
+    width: 184px
+    height: 100%
+    padding: 10px 10px
+
+  &:hover
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.3)
+  
+  a
+    display: inline-block
+    height: 100%
+
+
+  img
+    max-height: 100%
+    max-width: 100%
+    vertical-align: middle;

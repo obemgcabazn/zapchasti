@@ -73,12 +73,12 @@
 	  </div>
   </div>
   
-  <main <?=is_front_page()?'id="homepage"':''?>>
+  <main <?php //is_front_page()?'id="homepage"':''?>>
 	  <div class="wrapper">
 		  <div class="container">
 			  <div class="row  justify-content-md-center">
-				  <?php if (!is_front_page() && !is_cart() && !is_checkout() ){ ?>
+				  <?php // if (!is_front_page() && !is_cart() && !is_checkout() ){ ?>
 				  <div class="col-12 col-md-4 col-lg-3">
 					  <?=print_aside_menu()?>
 				  </div>
-				  <?php } ?>
+				  <?php // } ?>

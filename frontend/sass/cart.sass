@@ -52,10 +52,14 @@
 .woocommerce table.shop_table
   border: none
 
-.woocommerce table.shop_table tr 
-  border-left: none
-  td
-    border-top: none
+.woocommerce table.shop_table 
+  tbody th,
+  tfoot td,
+  tfoot th,
+  tr,
+    border-left: none
+    td
+      border-top: none
 
   & + tr td
     border-bottom: 1px solid rgba(0,0,0,.1)
@@ -87,10 +91,14 @@
     background: lighten($blue, 10)
 
 .woocommerce 
-  .cart_totals 
-    table.shop_table
-      border-radius: 0 0 5px 5px
-      border-top: 0
+  .cart-collaterals
+    .cart_totals 
+      width: 100%
+      table.shop_table
+        border-radius: 0 0 5px 5px
+        border-top: 0
+        tbody th
+          border-top: none
 
 .cart-subtotal
   display: none
