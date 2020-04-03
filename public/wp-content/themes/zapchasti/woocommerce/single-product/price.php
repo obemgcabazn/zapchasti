@@ -22,5 +22,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 
+function my_price_html( ){
+  global $product;
+
+  if ( $product->stock_status == 'outofstock' ) {
+    return ''; 
+  } else {
+    return '<p class="price">Цена: ' . $product->get_price_html() . '</p>';
+  }
+}
 ?>
-<p class="price">Цена: <?php echo $product->get_price_html(); ?></p>
+<?=my_price_html(); ?>

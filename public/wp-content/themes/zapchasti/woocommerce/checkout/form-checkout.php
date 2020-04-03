@@ -29,12 +29,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 	echo apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) );
 	return;
 }
-
 ?>
-
-<h1 class="text-center">Ваши данные</h1>
-
-
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
 <div class="checkout-wrapper">
@@ -56,7 +51,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 </div>
 	<div class="text-center">
-		<h3 id="order_review_heading"><?php _e( 'Your order', 'woocommerce' ); ?></h3>
+		<h3 id="order_review_heading">Доставка</h3>
 	</div>
 	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 

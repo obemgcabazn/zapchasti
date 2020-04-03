@@ -113,4 +113,39 @@ a[data-fancybox]
   img
     max-height: 100%
     max-width: 100%
-    vertical-align: middle;
+    vertical-align: middle
+
+// SLICK SLIDER
+#slick-products-gallery
+  .slick-list
+    left: -15px
+  .slick-slide
+    box-sizing: content-box
+    padding: 0 12px
+    width: 195px
+  .slick-next
+    &:before
+      background: url(img/slick-right-button.png) no-repeat
+  .slick-prev
+    &:before
+      background: url(img/slick-left-button.png) no-repeat
+  .slick-next, .slick-prev
+    position: relative
+    &:before
+      content: ''
+      display: inline-block
+      width: 17px
+      height: 38px
+  .thumbnails-wrap
+    max-width: 185px
+
+#slick-products-gallery .slick-prev 
+  float: left
+  top: 105px
+
+#slick-products-gallery .slick-next
+    float: right
+    top: -190px
+
+#slick-products-gallery .thumbnails-wrap
+    margin-bottom: 17px

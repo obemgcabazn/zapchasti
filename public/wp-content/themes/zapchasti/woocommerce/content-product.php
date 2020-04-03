@@ -48,53 +48,55 @@ if ( 0 === $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 	$classes[] = 'last';
 }
 ?>
-<div <?php post_class( $classes ); ?>>
-	<?php
-	/**
-	 * woocommerce_before_shop_loop_item hook.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_open - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item' ); /* открывает ссылку на товар */
-	?>
+<div class="col-12 col-md-4 col-xl-3 product-item-wrapper">
+	<div <?php post_class( $classes ); ?>>
 		<?php
+		/**
+		 * woocommerce_before_shop_loop_item hook.
+		 *
+		 * @hooked woocommerce_template_loop_product_link_open - 10
+		 */
+		do_action( 'woocommerce_before_shop_loop_item' ); /* открывает ссылку на товар */
+		?>
+			<?php
+				/**
+				 * woocommerce_before_shop_loop_item_title hook.
+				 *
+				 * @hooked woocommerce_show_product_loop_sale_flash - 10
+				 * @hooked woocommerce_template_loop_product_thumbnail - 10
+				 */
+				do_action( 'woocommerce_before_shop_loop_item_title' ); /* распродажа и фотки */
+				?>
+			<?php
 			/**
-			 * woocommerce_before_shop_loop_item_title hook.
+			 * woocommerce_shop_loop_item_title hook.
 			 *
-			 * @hooked woocommerce_show_product_loop_sale_flash - 10
-			 * @hooked woocommerce_template_loop_product_thumbnail - 10
+			 * @hooked woocommerce_template_loop_product_title - 10
+			 * @hooked woocommerce_template_loop_product_link_close - 20
 			 */
-			do_action( 'woocommerce_before_shop_loop_item_title' ); /* распродажа и фотки */
+			do_action( 'woocommerce_shop_loop_item_title' ); /* заголовок */
 			?>
-		<?php
-		/**
-		 * woocommerce_shop_loop_item_title hook.
-		 *
-		 * @hooked woocommerce_template_loop_product_title - 10
-		 * @hooked woocommerce_template_loop_product_link_close - 20
-		 */
-		do_action( 'woocommerce_shop_loop_item_title' ); /* заголовок */
-		?>
-		<?php wc_get_template( 'single-product/short-description.php' );  /* краткое описание */ ?>
-		<?php
-		/**
-		 * woocommerce_after_shop_loop_item_title hook.
-		 *
-		 * @hooked woocommerce_template_loop_rating - 5
-		 * @hooked woocommerce_template_loop_price - 10
-		 */
-		do_action( 'woocommerce_after_shop_loop_item_title' ); /* ценник с распродажами */
-		?>
+			<?php wc_get_template( 'single-product/short-description.php' );  /* краткое описание */ ?>
+			<?php
+			/**
+			 * woocommerce_after_shop_loop_item_title hook.
+			 *
+			 * @hooked woocommerce_template_loop_rating - 5
+			 * @hooked woocommerce_template_loop_price - 10
+			 */
+			do_action( 'woocommerce_after_shop_loop_item_title' ); /* ценник с распродажами */
+			?>
 
-		<?php
-		/**
-		 * woocommerce_after_shop_loop_item hook.
-		 *
-		 * @hooked woocommerce_template_loop_product_link_close - 5
-		 * @hooked woocommerce_template_loop_add_to_cart - 10
-		 */
-		
-		do_action( 'woocommerce_after_shop_loop_item' ); /* добавить в корзину */
-		
-		?>
-</div> <!-- замена li -->
+			<?php
+			/**
+			 * woocommerce_after_shop_loop_item hook.
+			 *
+			 * @hooked woocommerce_template_loop_product_link_close - 5
+			 * @hooked woocommerce_template_loop_add_to_cart - 10
+			 */
+			
+			do_action( 'woocommerce_after_shop_loop_item' ); /* добавить в корзину */
+			
+			?>
+	</div> <!-- замена li -->
+</div>

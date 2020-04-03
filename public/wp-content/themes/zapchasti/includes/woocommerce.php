@@ -15,6 +15,10 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 6 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 6 );
 
+/* убираем похожие товары */
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+
 // Заголовок товара в категории
 function woocommerce_template_loop_category_title( $category ) {
   echo '<h2 class="woocommerce-loop-category__title">' . $category->name . '</h2>';
@@ -131,7 +135,7 @@ function my_breadcrumbs_delimiter($args) {
 }
 
 // Количество товаров на странице категории
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 20;' ), 20 );
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 80;' ), 20 );
 
 // Посчет количества товаров в корзине
 function cart_count()
@@ -145,7 +149,6 @@ remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 )
 add_action( 'breadcrumbs', 'woocommerce_breadcrumb', 10 );
 
 add_filter( 'jpeg_quality', create_function( '', 'return 100;' ) );
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );
 
 function woocommerce_template_loop_product_title() {
   echo '<span class="woocommerce-loop-product__title">' . get_the_title() . '</span>';
@@ -415,6 +418,7 @@ function custom_override_checkout_fields( $f ) {
     $f['billing']['billing_city']['class'][1] = 'col-lg-6 mb-3';
     $f['billing']['billing_city']['label_class'][0] = 'col-12';
     $f['billing']['billing_city']['input_class'][0] = 'col-12';
+    $f['billing']['billing_city']['required'] = false;
 
     // $f['billing']['billing_postcode']['class'][0] = '';
     // $f['billing']['billing_postcode']['class'][1] = 'col-lg-6 mb-3';
@@ -431,7 +435,7 @@ function custom_override_checkout_fields( $f ) {
     $f['billing']['billing_address_1']['label_class'][0] = 'col-12';
     $f['billing']['billing_address_1']['input_class'][0] = 'col-12';
     $f['billing']['billing_address_1']['label'] = 'Адрес доставки';
-    $f['billing']['billing_address_1']['reqired'] = false;
+    $f['billing']['billing_address_1']['required'] = false;
 
     $f['billing']['billing_phone']['class'][0] = '';
     $f['billing']['billing_phone']['class'][2] = 'col-lg-6 mb-3';
@@ -444,15 +448,28 @@ function custom_override_checkout_fields( $f ) {
     $f['billing']['billing_email']['input_class'][0] = 'col-12';
 
     $f['order']['order_comments']['label'] = 'Комментарий к доставке';
+    $f['order']['order_comments']['placeholder'] = 'По возможности, укажите марку и модель котла для которого покупаете запчасть';
     $f['order']['order_comments']['class'][2] = 'col-lg-12';
     $f['order']['order_comments']['label_class'][0] = 'd-block';
     $f['order']['order_comments']['input_class'][0] = 'w-100 mb-3';
     $f['order']['order_comments']['custom_attributes']['rows'] = '4';
     $f['order']['order_comments']['custom_attributes']['cols'] = '4';
-    $f['order']['order_comments']['reqired'] = false;
+    $f['order']['order_comments']['required'] = false;
     $f['order']['order_comments']['clear'] = true;
 
-
+    // print_pre( $f );
     return $f;
-    // print_r($f);
+}
+
+function custom_override_default_address_fields( $address_fields ) {
+  $address_fields['city'][ 'required' ] = 0;
+
+  // print_pre( $address_fields );
+  return $address_fields;
+}
+add_filter( 'woocommerce_default_address_fields' , 'custom_override_default_address_fields' );
+
+add_filter( 'woocommerce_cart_totals_order_total_html', 'delete_nds_tax_from_checkout', 10 );
+function delete_nds_tax_from_checkout( $value ) {
+  return preg_replace("/<small[^>]+?[^>]+>(.*?)<\/small>/i", '', $value);
 }

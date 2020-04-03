@@ -38,9 +38,22 @@ if ( ! empty( $breadcrumb ) ) {
 			$taxonomy = $queried_object->taxonomy;
 			$term_id = $queried_object->term_id;
 			
-			if(get_field('breadcrumb_last_node', $taxonomy . '_' . $term_id)){echo the_field('breadcrumb_last_node', $taxonomy . '_' . $term_id);}
-			elseif ($taxonomy !== "product_cat" && get_field('breadcrumb_last_node')) {echo the_field('breadcrumb_last_node');}
-			else {echo esc_html( $crumb[0] );}
+			if( get_field('breadcrumb_last_node', $taxonomy . '_' . $term_id) )
+			{
+				// Последний узел для тех категорий, где он указан
+				echo the_field('breadcrumb_last_node', $taxonomy . '_' . $term_id);
+			}
+			elseif ( $taxonomy !== "product_cat" && $taxonomy !== "product_tag" && get_field('breadcrumb_last_node')) 
+			{
+				// Последний узел для тех товаров, где он указан
+				echo the_field('breadcrumb_last_node'); 
+			}
+			elseif ( $taxonomy === "product_tag" ) 
+			{
+				echo "Запчасти для котла " . woocommerce_page_title(false); // false - отменяет echo внутри функции
+			}else{
+				echo esc_html( $crumb[0] );
+			}
 
 		}
 

@@ -11,6 +11,7 @@ $companies['signal'] = 'signal.jpg';
 $companies['sime'] = 'sime.jpg';
 $companies['ariston'] = 'ariston.jpg';
 $companies['atem'] = 'atem.jpg';
+$companies['chaffoteaux'] = 'chaffoteaux.jpg';
 $companies['beretta'] = 'beretta.jpg';
 $companies['de-dietrich'] = 'dedietrich.jpg';
 $companies['konord'] = 'konord.jpg';
@@ -30,10 +31,24 @@ $companies['immergas'] = 'immergas.png';
 $companies['rostovgazoapparat'] = 'rga.png';
 $companies['thermona'] = 'thermona.png';
 $companies['zhukovsky'] = 'zhukovsky.png';
+$companies['innovita'] = 'innovita.jpg';
+$companies['innovita'] = 'innovita.jpg';
+$companies['nmz'] = 'nmz.jpg';
+$companies['irbis'] = 'irbis.png';
+$companies['rossen'] = 'rossen.jpg';
+$companies['servisgaz'] = 'servisgaz.png';
 
 ?>
 
 <div class="col-12 col-md-8 col-lg-9">
+  <div class="row">
+    <div class="col">
+      <img src="/img/banners/aquatherm-2019-banner-both-825px.jpg" alt="Aquatherm 2020">
+      <a class="d-block my-3" href="/category/gazovye-klapany/" title="Распродажа газовых клапанов Sit"><img src="/img/banners/sale-valves.jpg" alt=""></a>
+    </div>
+  </div>
+  
+
   <div class="row">
     <div class="col-12">
       <h1>Запчасти для газовых котлов российского и импортного производства</h1>
@@ -55,6 +70,42 @@ $companies['zhukovsky'] = 'zhukovsky.png';
       </div>
     </div>
   <?php } ?>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Запчасти для газовых водонагревателей (колонок)</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-md-3">
+      <div class="b__vendor-link-wrapper text-center">
+        <a href="/tag/kolonka-beretta/">
+          <div class="ie-wrapper">
+            <img src="<?=get_template_directory_uri()?>/img/logo/beretta.jpg" alt="Запчасти для колонок Beretta">
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="b__vendor-link-wrapper text-center">
+        <a href="/tag/kolonka-baxi/">
+          <div class="ie-wrapper">
+            <img src="<?=get_template_directory_uri()?>/img/logo/baxi.png" alt="Запчасти для колонок BAXI">
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="b__vendor-link-wrapper text-center">
+        <a href="/tag/kolonka-innovita/">
+          <div class="ie-wrapper">
+            <img src="<?=get_template_directory_uri()?>/img/logo/innovita.jpg" alt="Запчасти для колонок Innovita">
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 
   <div class="row">
@@ -81,6 +132,12 @@ $companies['zhukovsky'] = 'zhukovsky.png';
           </div>
         </a>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="text-center">Популярные товары</h3>
+      <?php echo do_shortcode('[slick]'); ?>
     </div>
   </div>
 
