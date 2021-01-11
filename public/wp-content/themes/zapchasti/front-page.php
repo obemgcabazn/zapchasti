@@ -43,7 +43,6 @@ $companies['servisgaz'] = 'servisgaz.png';
 <div class="col-12 col-md-8 col-lg-9">
   <div class="row">
     <div class="col">
-      <img src="/img/banners/aquatherm-2019-banner-both-825px.jpg" alt="Aquatherm 2020">
       <a class="d-block my-3" href="/category/gazovye-klapany/" title="Распродажа газовых клапанов Sit"><img src="/img/banners/sale-valves.jpg" alt=""></a>
     </div>
   </div>

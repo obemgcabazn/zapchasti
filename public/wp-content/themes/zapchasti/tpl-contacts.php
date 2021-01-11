@@ -16,10 +16,10 @@ Template Name: Шаблон страницы контактов
   ?>
 </div>
 
-<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
 <script>
   ymaps.ready(init);
-  var dolMap, 
+  let dolMap,
   dolPlacemark,
   samaraMap,
   samaraPlacemark;

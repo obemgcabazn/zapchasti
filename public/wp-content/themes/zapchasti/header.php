@@ -13,6 +13,7 @@
   <?php wp_head(); ?>
 </head>
 <body id="top">
+<?php wp_body_open(); ?>
   <header>
     <div class="top-header-menu-wrap">
       <div class="container">
@@ -36,13 +37,11 @@
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4 col-lg-5 pl-lg-5">
-            <div class=" text-center text-sm-left">
+            <div class="text-center text-sm-left">
               <a href="/contact/" title="Контакты" class="address"><b style="font-weight:700;">Пункт выдачи заказов:</b><br>м. Речной вокзал, г. Москва, ул. Лавочкина, 34<br>
                 Сервисный центр GRUNDFOS</a>
               <br class="d-block d-md-none">
-              <p class="time">Пн-Пт: <span class="working-time">с 9:00 до 20:00</span>,
-                <br class="d-block d-md-none">
-                Сб: <span class="working-time">с 10:00 до 16:00</span></p>
+              <p class="time">Пн-Пт: <span class="working-time">с 9:00 до 18:00</span></p>
             </div>
           </div>
           <div class="col-lg-2">

@@ -118,8 +118,7 @@ add_image_size( 'my_cart_image_size', 60, 60, false );
 // add_filter('woocommerce_cart_item_thumbnail', 'my_cart_image_size', 10, 3);
 
 
-function slick_gallery()
-{
+function slick_gallery() {
     global $woocommerce_loop;
     $params = array(
         'posts_per_page' => 7,
@@ -198,3 +197,70 @@ add_filter('woocommerce_available_variation', function ($value, $object = null, 
 //}
 // add_action('woocommerce_order_item_meta_start', /*'the_custom_field'*/ function(){ echo "1";}, 10);
 // add_action('woocommerce_order_item_meta_end', /*'the_custom_field'*/ function(){ echo "2";}, 10);
+
+
+/*
+ * Изменение вывода галереи через шорткод
+ * Смотреть функцию gallery_shortcode в http://wp-kama.ru/filecode/wp-includes/media.php
+ * $output = apply_filters( 'post_gallery', '', $attr );
+ * Требует наличия fancybox 3
+ *
+ * Нужно добавлять вручную в коде атрибут name
+ */
+add_filter('post_gallery', 'ep_gallery_output', 10, 2);
+function ep_gallery_output( $output, $attr ){
+  $ids_arr = explode(',', $attr['ids']);
+  $ids_arr = array_map('trim', $ids_arr );
+  $name = explode(',', $attr['name']);
+
+  // Нужно чтобы добавлять класс slick-gallery
+  if( isset($attr['class'] )) {
+    $adition_class = explode(',', $attr['class']);
+    $out = "<div class='gallery_photos $adition_class[0]'>";
+  } else {
+    $out = "<div class='gallery_photos'>";
+  }
+
+
+  $pictures = get_posts( array(
+    'posts_per_page' => -1,
+    'post__in'       => $ids_arr,
+    'post_type'      => 'attachment',
+    'orderby'        => 'post__in',
+  ) );
+
+  if( ! $pictures ) return 'Запрос вернул пустой результат.';
+
+  foreach( $pictures as $pic ){
+
+    $src = $pic->guid;
+    $t = esc_attr( $pic->post_title );
+    $title = ( $t && false === strpos($src, $t)  ) ? $t : '';
+    $id = $pic->ID;
+
+    $caption = ( $pic->post_excerpt != '' ? $pic->post_excerpt : $title );
+
+    $out .= '<div class="gallery_item">';
+    $out .= '<a class="gallery_link" href="'. esc_url($src) .'"';
+
+    if ( $name[0] ) {
+      $out .= 'data-fancybox="' . $name[0] . '"';
+    } else {
+      $out .= 'data-fancybox="gallery"';
+    }
+
+    if ($caption) {
+      $out .= 'data-caption="' . $caption . '"';
+    }
+
+    $out .= '>';
+    $out .= wp_get_attachment_image( $id, "thumbnail", "false", array(
+        'class' => 'gallery_image',
+      ) );
+    $out .= '</a></div>';
+  }
+
+  $out .= '</div>';
+
+  return $out;
+}
